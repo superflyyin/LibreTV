@@ -24,13 +24,10 @@ jobs:
           mkdir -p scripts
           curl -fsSL 'https://raw.githubusercontent.com/superflyyin/LunaTV-config/refs/heads/main/jingjian.json' -o ./scripts/jingjian.json
 
-      - name: Download generator script from branch
-        run: |
-          mkdir -p scripts
-          curl -fsSL 'https://raw.githubusercontent.com/superflyyin/LibreTV/automation/update-customer-sites/scripts/generate_customer_site.js' -o ./scripts/generate_customer_site.js
-          chmod +x ./scripts/generate_customer_site.js
+      - name: List scripts (debug)
+        run: ls -la ./scripts || true
 
-      - name: Run generator
+      - name: Run generator (local)
         run: node ./scripts/generate_customer_site.js ./scripts/jingjian.json ./js/customer_site.js
 
       - name: Show diff
@@ -47,5 +44,7 @@ jobs:
             echo "No changes to commit"
             exit 0
           fi
+          git commit -m "chore: update js/customer_site.js from LunaTV-config/jingjian.json [skip ci]"
+          git push origin HEAD:main
           git commit -m "chore: update js/customer_site.js from LunaTV-config/jingjian.json [skip ci]"
           git push origin HEAD:main
