@@ -1,0 +1,51 @@
+name: Update customer_site from LunaTV-config
+
+on:
+  schedule:
+    - cron: '0 1 * * *'
+  workflow_dispatch:
+
+jobs:
+  update-customer-site:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Download latest jingjian.json
+        run: |
+          mkdir -p scripts
+          curl -fsSL 'https://raw.githubusercontent.com/superflyyin/LunaTV-config/refs/heads/main/jingjian.json' -o ./scripts/jingjian.json
+
+      - name: Download generator script from branch
+        run: |
+          mkdir -p scripts
+          curl -fsSL 'https://raw.githubusercontent.com/superflyyin/LibreTV/automation/update-customer-sites/scripts/generate_customer_site.js' -o ./scripts/generate_customer_site.js
+          chmod +x ./scripts/generate_customer_site.js
+
+      - name: Run generator
+        run: node ./scripts/generate_customer_site.js ./scripts/jingjian.json ./js/customer_site.js
+
+      - name: Show diff
+        run: git --no-pager diff -- ./js/customer_site.js || true
+
+      - name: Commit & push changes to main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add js/customer_site.js || true
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "chore: update js/customer_site.js from LunaTV-config/jingjian.json [skip ci]"
+          git push origin HEAD:main
