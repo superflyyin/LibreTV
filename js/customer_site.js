@@ -119,7 +119,7 @@ const CUSTOMER_SITES = {
     api: 'http://lbapiby.com/api.php/provide/vod',
     name: '🔞--AIvin-',
   },
-  api_155zy2_com: {
+  s_155zy2_com: {
     api: 'https://155api.com/api.php/provide/vod',
     name: '🔞155-资源',
   },
@@ -198,8 +198,11 @@ const CUSTOMER_SITES = {
 };
 
 // 调用全局方法合并
-if (window.extendAPISites) {
+if (typeof window !== "undefined" && window.extendAPISites) {
   window.extendAPISites(CUSTOMER_SITES);
+} else if (typeof globalThis !== "undefined") {
+  // In Node, export the object for tests or further processing
+  try { module.exports = CUSTOMER_SITES; } catch (e) {}
 } else {
-  console.error('错误：请先加载 config.js！');
+  console.error('错误：请先加载 config.js 或在浏览器环境运行！');
 }
