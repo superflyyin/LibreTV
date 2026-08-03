@@ -3,13 +3,13 @@ const CUSTOMER_SITES = {
         api: 'https://www.qiqidys.com/api.php/provide/vod',
         name: '七七资源',
     }
-    iqiyizyapi: {
+    iqiyizy: {
         api: 'https://iqiyizyapi.com/api.php/provide/vod',
         name: '爱奇艺',
     }
     dbzy: {
-        name: '豆瓣资源',
         api: 'https://caiji.dbzy5.com/api.php/provide/vod',
+        name: '豆瓣资源',
     }
     mtzy: {
         name: '茅台资源',
