@@ -27,8 +27,8 @@ jobs:
       - name: List scripts (debug)
         run: ls -la ./scripts || true
 
-      - name: Run generator (local)
-        run: node ./scripts/generate_customer_site.js ./scripts/jingjian.json ./js/customer_site.js
+      - name: Run generator (local, CommonJS)
+        run: node ./scripts/generate_customer_site.cjs ./scripts/jingjian.json ./js/customer_site.js
 
       - name: Show diff
         run: git --no-pager diff -- ./js/customer_site.js || true
@@ -44,7 +44,5 @@ jobs:
             echo "No changes to commit"
             exit 0
           fi
-          git commit -m "chore: update js/customer_site.js from LunaTV-config/jingjian.json [skip ci]"
-          git push origin HEAD:main
           git commit -m "chore: update js/customer_site.js from LunaTV-config/jingjian.json [skip ci]"
           git push origin HEAD:main
