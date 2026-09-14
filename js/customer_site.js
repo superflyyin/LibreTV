@@ -76,7 +76,7 @@ const CUSTOMER_SITES = {
     name: '🎬金鹰点播',
   },
   p2100_net: {
-    api: 'https://p2100.net/api.php/provide/vod',
+    api: 'https://pz.v88.qzz.io/?url=https://p2100.net/api.php/provide/vod',
     name: '🎬飘零资源',
   },
   api_ukuapi88_com: {
@@ -114,10 +114,6 @@ const CUSTOMER_SITES = {
   s_91md_me: {
     api: 'https://91md.me/api.php/provide/vod',
     name: '🔞麻豆视频',
-  },
-  lbapiby_com: {
-    api: 'http://lbapiby.com/api.php/provide/vod',
-    name: '🔞--AIvin-',
   },
   s_155zy2_com: {
     api: 'https://155api.com/api.php/provide/vod',
@@ -178,10 +174,6 @@ const CUSTOMER_SITES = {
   heiliaozy_cc: {
     api: 'https://www.heiliaozyapi.com/api.php/provide/vod',
     name: '🔞黑料资源',
-  },
-  api_bwzym3u8_com: {
-    api: 'https://api.bwzyz.com/api.php/provide/vod',
-    name: '🔞百万资源',
   },
   thzy8_me: {
     api: 'https://thzy1.me/api.php/provide/vod',
