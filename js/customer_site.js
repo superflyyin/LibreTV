@@ -76,7 +76,7 @@ const CUSTOMER_SITES = {
     name: '🎬金鹰点播',
   },
   p2100_net: {
-    api: 'https://pz.v88.qzz.io/?url=https://p2100.net/api.php/provide/vod',
+    api: 'https://p2100.net/api.php/provide/vod',
     name: '🎬飘零资源',
   },
   api_ukuapi88_com: {
